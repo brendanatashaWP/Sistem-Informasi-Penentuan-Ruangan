@@ -5,9 +5,9 @@ $(document).ready(function(){
         submitFormAdd();
     });
     //get all users
-    var table = $('#datatable1').DataTable( {
+    var table = $('#datatable2').DataTable( {
         ajax: {
-            url: baseURL + '/get-user-biro1',
+            url: baseURL + '/get-user-kaprodi',
             dataSrc: ''
         },
         columns: [
@@ -139,12 +139,12 @@ function submitFormEdit (data){
     data2['password'] = pass.val();
     data2['role'] = role.val();
     data2['statusUser'] = 'Active';
-        userName.val('');
-        namaPengguna.val('');
-        pass.val('');
-        // repass.val('');
-        role.val('Biro 1');
-        $('#editModal').modal('toggle');
+    userName.val('');
+    namaPengguna.val('');
+    pass.val('');
+    // repass.val('');
+    role.val('Biro 1');
+    $('#editModal').modal('toggle');
     // } else {
     //     alert('Password tidak benar!');
     // };

@@ -30,6 +30,9 @@ public class Matakuliah implements Serializable{
     private String namaMk;
 
     @Column(nullable = false)
+    private int idKaprodi;
+
+    @Column(nullable = false)
     private int sks;
 
     public int getKodeGrupFk() {
@@ -97,4 +100,12 @@ public class Matakuliah implements Serializable{
     private int jamSelesai;
     @Column(nullable = false)
     private String statusMk;
+
+    public int getIdKaprodi() {
+        return idKaprodi;
+    }
+
+    public void setIdKaprodi(int idKaprodi) {
+        this.idKaprodi = idKaprodi;
+    }
 }
