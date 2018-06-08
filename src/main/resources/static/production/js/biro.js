@@ -48,36 +48,10 @@ $(document).ready(function(){
         $("#groupAtur").val(ambil.kodeGrupFk);
         $("#jamMulaiAtur").val(ambil.jamMulai);
         $("#jamSelesaiAtur").val(ambil.jamSelesai);
+        // bandinginKapasitas($("#kapasitasAtur").val());
+        // bandinginJamdanHari();
     });
 });
 var baseURL = 'http://localhost:8090/api';
-
-// function getMk(idKaprodi) {
-//     this._a = false;
-//     console.log(idKaprodi);
-//     // $.get(baseURL+'/get-all-mk/' + idKaprodi, function(){
-//     //     this.idKaprodi = idKaprodi;
-//     //     console.log(idKaprodi);
-//     //     $('#datatable5').DataTable().ajax.reload();
-//     // });
-//     setIdKaprodi(idKaprodi);
-    // $.ajax({
-    //     type: "GET",
-    //     url: baseURL + '/get-all-mk/' + idKaprodi,
-    //     data: {},
-    //     success: function (data) {
-    //
-
-            // this.idKaprodi = idKaprodi;
-            // $('#datatable5').DataTable().ajax.reload(function (data) {
-            //     console.log(data);
-    //         });
-    //     },
-    //     error: function (err) {
-    //         console.log(err);
-    //     }
-    // });
-    // this.idKaprodi = idKaprodi;
-    // $('#datatable5').DataTable().ajax.reload();
 
 

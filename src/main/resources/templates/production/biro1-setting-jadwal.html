@@ -173,17 +173,14 @@
                                 <input type="text" disabled class="form-control" placeholder="" required="" id="jamSelesaiAtur"/>
                               </div>
                             </div>
-                            <br></br>
-                            <div>
-                              <label class="col-sm-3">Pilih Ruang </label>
-                              <div class="col-sm-9">
-                                <select class="form-control" id="dropdownRole">
-                                  <option>C.3.8</option>
-                                  <option>C.3.7</option>
-                                  <option>H.1.1</option>
-                                  <option>Lab. B</option>
-                                </select>
-                              </div>
+                            <br><br/>
+                            <div class="col-sm-6">
+                              <label>Pilih Ruang </label>
+                              <select class="form-control" id="selectRuang">
+                                <option th:each="ruang : ${ruangList}"
+                                        th:value="${ruang.idRuang}"
+                                        th:utext="${ruang.namaRuang}"></option>
+                              </select>
                             </div>
                           </form>
                         </div>

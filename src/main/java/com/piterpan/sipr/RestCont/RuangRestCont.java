@@ -27,6 +27,12 @@ public class RuangRestCont {
         return ruangInter.findAll();
     }
 
+    //getActive ruang
+    @GetMapping("/get-active-ruang")
+    public List<Ruang> getActiveRuang(){
+        return ruangInter.findRuangsByStatusRuangIsLike("Active");
+    }
+
     //get 1 ruang
     @GetMapping("/get-ruang/{id}")
     public Ruang getOneRuang(@PathVariable(value = "id") Integer id) {
@@ -53,7 +59,11 @@ public class RuangRestCont {
                 .orElseThrow(()-> new ResourceNotFoundException2("ruang", "idRUang", id));
         ruang1.setKapasitasRuang(ruang.getKapasitasRuang());
         ruang1.setNamaRuang(ruang.getNamaRuang());
-        ruang1.setStatusRuang("Not-Available");
+        if (ruang.getStatusRuang().equals("Active")){
+            ruang1.setStatusRuang("Non-Active");
+        } else {
+            ruang1.setStatusRuang("Active");
+        }
         Ruang ruangBaru = ruangInter.save(ruang1);
         return ruangBaru;
     }

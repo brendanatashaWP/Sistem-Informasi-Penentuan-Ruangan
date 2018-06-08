@@ -12,6 +12,7 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 public class Ruang implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRuang;
     @Column(nullable = false)
     private String namaRuang, statusRuang;

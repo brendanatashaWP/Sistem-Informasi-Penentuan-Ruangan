@@ -2,7 +2,9 @@ package com.piterpan.sipr.Controller;
 
 import com.piterpan.sipr.Interface.UserInter;
 import com.piterpan.sipr.Model.Matakuliah;
+import com.piterpan.sipr.Model.Ruang;
 import com.piterpan.sipr.Model.User;
+import com.piterpan.sipr.RestCont.RuangRestCont;
 import com.piterpan.sipr.RestCont.UserRestCont;
 import com.piterpan.sipr.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ import javax.servlet.http.HttpSession;
 public class Biro1Controller {
     @Autowired
     UserRestCont userRestCont;
-
+    @Autowired
+    RuangRestCont ruangRestCont;
     @RequestMapping("/biro1-dashboard")
     public String biro1Dashboard(HttpSession httpSession, ModelMap modelMap){
         User user = (User) httpSession.getAttribute("user");
@@ -35,15 +38,19 @@ public class Biro1Controller {
     @RequestMapping("/biro1-setting-jadwal")
     public String biro1SettingJadwal(HttpSession httpSession, ModelMap modelMap){
         User user = (User) httpSession.getAttribute("user");
+        Ruang ruang = (Ruang) httpSession.getAttribute("ruang");
         if (user == null)
             return "redirect:/login";
         else if (!user.getRole().equals("Biro 1"))
             return "redirect:/";
         else {
             modelMap.addAttribute("userList", userRestCont.getAllUserKaprodi());
+            modelMap.addAttribute("ruangList", ruangRestCont.getActiveRuang());
             modelMap.addAttribute("idUser", user.getIdUser());
             modelMap.addAttribute("username", user.getUsername());
             modelMap.addAttribute("namaUser", user.getNamaUser());
+//            modelMap.addAttribute("namaRuang", ruang.getNamaRuang());
+//            modelMap.addAttribute("idRuang", ruang.getIdRuang());
             return "/production/biro1-setting-jadwal";
         }
     }
@@ -51,6 +58,7 @@ public class Biro1Controller {
     @RequestMapping("/biro1-setting-ruangan")
     public String biro1SettingRuangan(HttpSession httpSession, ModelMap modelMap){
         User user = (User) httpSession.getAttribute("user");
+        Ruang ruang = (Ruang) httpSession.getAttribute("ruang");
         if (user == null)
             return "redirect:/login";
         else if (!user.getRole().equals("Biro 1"))
@@ -59,6 +67,7 @@ public class Biro1Controller {
             modelMap.addAttribute("idUser", user.getIdUser());
             modelMap.addAttribute("username", user.getUsername());
             modelMap.addAttribute("namaUser", user.getNamaUser());
+//            modelMap.addAttribute("idRuang", ruang.getIdRuang());
             return "/production/biro1-setting-ruangan";
         }
     }
