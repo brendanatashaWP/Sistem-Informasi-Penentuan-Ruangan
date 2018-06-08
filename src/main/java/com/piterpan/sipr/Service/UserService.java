@@ -19,4 +19,12 @@ public class UserService {
     public List<User> findUserByRole(String role){
         return userInter.findUsersByRoleIsLike(role);
     }
+
+    public User findByUsername(String username){
+        return userInter.findUsersByUsername(username);
+    }
+
+//    public int findTopId(){
+//        return userInter.findTopIdUser();
+//    }
 }

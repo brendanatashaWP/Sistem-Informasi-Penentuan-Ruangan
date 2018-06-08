@@ -4,10 +4,13 @@ $(document).ready(function(){
     $("#coba").click(function(){
         submitFormAdd();
     });
+    $("#btnLogout2").click(function(){
+        logout();
+    });
     //get all users
     var table = $('#datatable1').DataTable( {
         ajax: {
-            url: baseURL + '/get-users',
+            url: baseURL + '/get-user-biro1',
             dataSrc: ''
         },
         columns: [
@@ -37,6 +40,7 @@ $(document).ready(function(){
         // console.log(ambil.idUser);
         deleteUserPrepare(ambil);
     });
+    //ambil data user ke form edit user
     $('body').on('click', '#btnEdit', function(){
         //to get currently clicked row object
         var row  = $(this).parents('tr')[0];
@@ -51,6 +55,7 @@ $(document).ready(function(){
         $("#passEdit").val(ambil.password);
         $("#dropdownRoleEdit").val(ambil.role);
     });
+    //edit user
     $("#saveEdit").click(function () {
         submitFormEdit(ambil);
     })
@@ -58,13 +63,8 @@ $(document).ready(function(){
 var page = 1;
 var pageSize = 10;
 var sort = 1;
-var nameSort = 1;
 
 var baseURL = 'http://localhost:8090/api';
-var userCount;
-var roleData;
-var usersFilterBy = 0;
-var numRow = 0;
 var url;
 
 //add User
@@ -83,8 +83,8 @@ function addUser(data) {
             console.log(err);
         }
     });
-};
-
+}
+//ganti status user
 function deleteUserPrepare(user) {
     event.preventDefault();
     var data = {};
@@ -96,7 +96,7 @@ function deleteUserPrepare(user) {
     data['statusUser'] = user.statusUser;
     deleteUser(data);
 }
-
+//submit form add persiapan lempar data2
 function submitFormAdd() {
     event.preventDefault();
     var userName = $('#newUsername');
@@ -125,7 +125,7 @@ function submitFormAdd() {
         alert('Password tidak benar!');
     };
 }
-
+//submit form edit, persiapan lempar data2
 function submitFormEdit (data){
     event.preventDefault();
     console.log(data.idUser);
@@ -153,7 +153,7 @@ function submitFormEdit (data){
     // };
     updateUser(data2);
 }
-
+//edit user
 function updateUser(data){
     console.log(data.idUser);
     $.ajax({
@@ -171,90 +171,7 @@ function updateUser(data){
         }
     });
 }
-
-// function getUsersBiro1() {
-//         $.ajax({
-//             url: baseURL + '/get-users',
-//             type: 'get',
-//             success: function (data) {
-//                 var tableBody = $('#tabel-users-body');
-//                 // console.log(data)
-//                 for (var i = 0; i < data.length; i++) {
-//                     tableBody.append(
-//                         '<tr>' +
-//                         '<td>' + data[i].idUser + '</td>' +
-//                         '<td>' + data[i].username + '</td>' +
-//                         '<td>' + data[i].namaUser + '</td>' +
-//                         '<td>' + data[i].role + '</td>' +
-//                         '<td>' + data[i].statusUser + '</td>' +
-//                         '<td>' +
-//                         '<div class="btn-grup">' +
-//                         '<button class="btn btn-warning" data-toggle="modal" data-target="#editModal-'+data[i].idUser + '">Edit</button>' +
-//                         '<button class="btn btn-danger" onclick="deleteUser(' + data[i].idUser + ')">Delete</button>' +
-//
-//                         '<div class="modal fade" id="editModal-' + data[i].idUser + '" role="dialog">' +
-//                             '<div class="modal-dialog modal-md">'+
-//                                 '<div class="modal-content">' +
-//                                     '<div class="modal-header">' +
-//                                         '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
-//                                         '<h4 class="modal-title">Edit User</h4>' +
-//                                 '</div>'+
-//                             '<div class="modal-body">' +
-//                             '<form id="formEditUser-' + data[i].idUser +'"  onsubmit="setId(' + data[i].idUser + ')">' +
-//                                 '<div>' +
-//                                     '<label class="col-sm-3">Username </label>'+
-//                                         '<div class="col-sm-9">' +
-//                                         '<input type="text" id="username-' + data[i].idUser + '" class="form-control" placeholder="Username" required="" value="'+ data[i].username+'" />'+
-//                                         '</div>'+
-//                                 '</div>'+
-//                                 '<br>' + '<br>'+
-//                                 '<div>' +
-//                                     '<label class="col-sm-3">Nama Pengguna </label>'+
-//                                         '<div class="col-sm-9">'+
-//                                         '<input type="text" id="namaPengguna-' + data[i].idUser + '" class="form-control" placeholder="Nama Pengguna" required="" value="'+ data[i].namaUser+'" />'+
-//                                         '</div>' +
-//                                 '</div>' +
-//                         '<br><br>'+
-//                                 '<div>'+
-//                         '<label class="col-sm-3">Password </label>'+
-//                         '<div class="col-sm-9">'+
-//                         '<input type="password" id="pass-' + data[i].idUser + '" class="form-control" placeholder="Password" required="" value="'+data[i].password + '" />'+
-//                         '</div>'+
-//                         '</div>'+
-//                         '<br>'+
-//                         '<br>'+
-//                         '<div>'+
-//                         '<label class="col-sm-3">Repassword </label>'+
-//                         '<div class="col-sm-9">'+
-//                         '<input type="password" id="repass-' + data[i].idUser + '" class="form-control" placeholder="Repassword" required="" />'+
-//                         '</div>'+
-//                         '</div>'+
-//                         '<br>' +
-//                         '<br>'+
-//                         '<div>'+
-//                         '<label class="col-sm-3">Role </label>'+
-//                         '<div class="col-sm-9">'+
-//                         '<select class="form-control" id="dropdownRole-' + data[i].idUser + '" data-value="'+ data[i].role+'">'+
-//                         '<option>Biro 1</option>'+
-//                     '<option>KA Prodi</option>'+
-//                     '</select>'+
-//                     '</div>'+
-//                     '</div>'+
-//                     '</form>'+
-//                     '</div>'+
-//                     '<div class="modal-footer">'+
-//                         '<button type="submit" id="saveEdit-' + data[i].idUser + '" class="btn btn-info btn-sm" data-dismiss="modal">Save changes</button>'+
-//                         '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
-//                         '</div>'+
-//                         '</div>'+
-//                         '</div>'+
-//                         '</div>'
-//                 )
-//                 }
-//             }
-//         })
-//     };
-
+//delete user
 function deleteUser(data) {
     $.ajax({
         url: baseURL + '/delete-user/' + data.idUser,
@@ -268,6 +185,22 @@ function deleteUser(data) {
         },
         error: function (err) {
             console.log(err);
+        }
+    });
+}
+function logout() {
+    $.ajax({
+        url: 'http://localhost:8090' + '/logout',
+        type: 'POST', // Tipe pengaksesan url
+        success: function (data) {
+            alert(data.message);
+
+            if (data.data === 1) {
+                location.assign(baseUrl);
+            }
+        },
+        error: function (error) {
+            console.log(error);
         }
     });
 }

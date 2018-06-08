@@ -24,6 +24,7 @@ public class Matakuliah implements Serializable{
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMk;
 
     @Column(nullable = false)
@@ -35,16 +36,16 @@ public class Matakuliah implements Serializable{
     @Column(nullable = false)
     private int sks;
 
-    public int getKodeGrupFk() {
+    public char getKodeGrupFk() {
         return kodeGrupFk;
     }
 
-    public void setKodeGrupFk(int kodeGrupFk) {
+    public void setKodeGrupFk(char kodeGrupFk) {
         this.kodeGrupFk = kodeGrupFk;
     }
 
     @Column(nullable = false)
-    private int kodeGrupFk;
+    private char kodeGrupFk;
 
     public String getKodeMk() {
         return kodeMk;
@@ -78,11 +79,11 @@ public class Matakuliah implements Serializable{
         this.kapasitasMk = kapasitasMk;
     }
 
-    public int getJamSelesai() {
-        return jamSelesai;
+    public String getJamSelesai() {
+        return String.format("%.2f", jamSelesai);
     }
 
-    public void setJamSelesai(int jamSelesai) {
+    public void setJamSelesai(double jamSelesai) {
         this.jamSelesai = jamSelesai;
     }
 
@@ -97,7 +98,9 @@ public class Matakuliah implements Serializable{
     @Column(nullable = false)
     private int kapasitasMk;
     @Column(nullable = false)
-    private int jamSelesai;
+    private double jamSelesai;
+    @Column(nullable = false)
+    private double jamMulai;
     @Column(nullable = false)
     private String statusMk;
 
@@ -107,5 +110,13 @@ public class Matakuliah implements Serializable{
 
     public void setIdKaprodi(int idKaprodi) {
         this.idKaprodi = idKaprodi;
+    }
+
+    public String getJamMulai() {
+        return String.format("%.2f", jamMulai) ;
+    }
+
+    public void setJamMulai(double jamMulai) {
+        this.jamMulai = jamMulai;
     }
 }

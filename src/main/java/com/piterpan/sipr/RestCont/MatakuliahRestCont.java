@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
+import static java.lang.Float.parseFloat;
+
 @RestController
 @RequestMapping("/api")
 public class MatakuliahRestCont {
@@ -22,9 +25,9 @@ public class MatakuliahRestCont {
     }
 
     //Get all mk
-    @GetMapping("/get-mk")
-    public List<Matakuliah> getAllMk(){
-        return matakuliahInter.findAll();
+    @GetMapping("/get-all-mk/{idKaprodi}")
+    public List<Matakuliah> getAllMk(@PathVariable(value = "idKaprodi") int id){
+        return matakuliahInter.findMatakuliahsByIdKaprodi(id);
     }
 
     //Get 1 mk
@@ -39,7 +42,7 @@ public class MatakuliahRestCont {
     public Matakuliah updateMk(@PathVariable(value = "id") Integer id, @Valid @RequestBody Matakuliah mk){
         Matakuliah matakuliah = matakuliahInter.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException2("Matakuliah", "idMk", id));
-        matakuliah.setJamSelesai(mk.getJamSelesai());
+        matakuliah.setJamSelesai(Double.parseDouble(mk.getJamSelesai()));
         matakuliah.setKapasitasMk(mk.getKapasitasMk());
         matakuliah.setKodeGrupFk(mk.getKodeGrupFk());
         matakuliah.setKodeMk(mk.getKodeMk());
@@ -55,13 +58,17 @@ public class MatakuliahRestCont {
     public Matakuliah deleteMk(@PathVariable(value = "id") Integer id, @Valid @RequestBody Matakuliah mk){
         Matakuliah matakuliah = matakuliahInter.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException2("Matakuliah", "idMk", id));
-        matakuliah.setJamSelesai(mk.getJamSelesai());
+//        matakuliah.setJamSelesai(Double.parseDouble(mk.getJamSelesai()));
         matakuliah.setKapasitasMk(mk.getKapasitasMk());
         matakuliah.setKodeGrupFk(mk.getKodeGrupFk());
         matakuliah.setKodeMk(mk.getKodeMk());
         matakuliah.setNamaMk(mk.getNamaMk());
         matakuliah.setSks(mk.getSks());
-        matakuliah.setStatusMk("Non-Active");
+        if (mk.getStatusMk().equals("Active")){
+            matakuliah.setStatusMk("Non-Active");
+        } else {
+            matakuliah.setStatusMk("Active");
+        }
         Matakuliah mkBaru = matakuliahInter.save(matakuliah);
         return mkBaru;
     }

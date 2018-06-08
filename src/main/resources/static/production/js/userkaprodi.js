@@ -4,6 +4,9 @@ $(document).ready(function(){
     $("#coba").click(function(){
         submitFormAdd();
     });
+    $("#btnLogout").click(function(){
+        logout();
+    });
     //get all users
     var table = $('#datatable2').DataTable( {
         ajax: {
@@ -43,10 +46,6 @@ $(document).ready(function(){
         var row  = $(this).parents('tr')[0];
         //for row data
         ambil = table.row( row ).data();
-        // alert("jalan");
-        // alert(ambil.idUser);
-        // var ambilUsername = document.getElementById("#usernameEdit");
-        // ambilUsername.value = ambil.username;
         $("#usernameEdit").val(ambil.username);
         $("#namaPenggunaEdit").val(ambil.namaUser);
         $("#passEdit").val(ambil.password);
@@ -80,7 +79,7 @@ function addUser(data) {
             console.log(err);
         }
     });
-};
+}
 //ganti status user
 function deleteUserPrepare(user) {
     event.preventDefault();
@@ -182,6 +181,22 @@ function deleteUser(data) {
         },
         error: function (err) {
             console.log(err);
+        }
+    });
+}
+function logout() {
+    $.ajax({
+        url: 'http://localhost:8090' + '/logout',
+        type: 'POST', // Tipe pengaksesan url
+        success: function (data) {
+            alert(data.message);
+
+            if (data.data === 1) {
+                location.assign(baseUrl);
+            }
+        },
+        error: function (error) {
+            console.log(error);
         }
     });
 }

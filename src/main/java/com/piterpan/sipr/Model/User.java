@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Component
 @Entity
@@ -12,8 +14,9 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false)
     private String password;
@@ -72,4 +75,18 @@ public class User implements Serializable{
     private String statusUser;
     @Column(nullable = false)
     private String namaUser;
+
+    public static String passwordEncoder(String password) throws NoSuchAlgorithmException {
+        StringBuilder userPasswordEncode = new StringBuilder();
+        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+        messageDigest.update(password.getBytes());
+
+        byte userPasswordByte[] = messageDigest.digest();
+
+        for (int i = 0; i < userPasswordByte.length; i++) {
+            userPasswordEncode.append(Integer.toString((userPasswordByte[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return userPasswordEncode.toString();
+    }
 }
