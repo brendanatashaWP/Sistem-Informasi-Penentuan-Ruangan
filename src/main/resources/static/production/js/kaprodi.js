@@ -30,6 +30,7 @@ $(document).ready(function(){
             { data: 'namaMk'},
             { data: 'sks'},
             { data: 'kapasitasMk' },
+            { data: 'hariMk' },
             { data: 'kodeGrupFk'},
             { data: 'jamMulai' },
             { data: 'jamSelesai' },
@@ -65,6 +66,7 @@ $(document).ready(function(){
         $("#kodeMkEdit").val(ambil.kodeMk);
         $("#namaMkEdit").val(ambil.namaMk);
         $("#sksEdit").val(ambil.sks);
+        $("#hari").val(ambil.hariMk);
         $("#kapasitasMkEdit").val(ambil.kapasitasMk);
         $("#kodeGrupMkEdit").val(ambil.kodeGrupFk);
         $("#jamMulaiEdit").val(ambil.jamMulai);
@@ -106,6 +108,7 @@ function submitFormAdd() {
     var kodeMk = $('#kodeMk');
     var namaMk = $('#namaMk');
     var sks = $('#sks');
+    var hari = $('#hari');
 
     var data = {};
     data['idKaprodi'] = idKaprodi.val();
@@ -116,6 +119,7 @@ function submitFormAdd() {
     data['kodeMk'] = kodeMk.val();
     data['namaMk'] = namaMk.val();
     data['sks'] = sks.val();
+    data['hariMk'] = hari.val();
     data['statusMk'] = 'Active';
     idKaprodi.val('');
     jamMulai.val('');
@@ -135,11 +139,6 @@ function hitungJamSelesai(jamMulai, sks) {
     var menit = totalWaktuMenit % 60; //nyari menit
     var jam = Math.floor(totalWaktuMenit / 60); //nyari jam dibulatkan kebawah
     var mulai = jamMulai.split('.');
-    // console.log("total " + totalWaktuMenit);
-    // console.log("menit " + menit);
-    // console.log("jam " + jam);
-    // console.log("potongan jam "+mulai[0]);
-    // console.log("potongan menit " +mulai[1]);
     var totalMenit = parseInt(mulai[1]) + parseInt(menit);
     var finalMenit, finalJam;
     if (totalMenit > 60){
@@ -171,6 +170,7 @@ function submitFormEdit() {
     var kodeMk = $('#kodeMkEdit');
     var namaMk = $('#namaMkEdit');
     var sks = $('#sksEdit');
+    var hari = $('#hari');
 
     var data = {};
     data['idMk'] = idMk.val();
@@ -182,6 +182,7 @@ function submitFormEdit() {
     data['kodeMk'] = kodeMk.val();
     data['namaMk'] = namaMk.val();
     data['sks'] = sks.val();
+    data['hariMk'] = hari.val();
     data['statusMk'] = 'Active';
     idKaprodi.val('');
     jamMulai.val('');
@@ -227,6 +228,7 @@ function deleteMkPrepare(mk) {
     data['namaMk'] = mk.namaMk;
     data['sks'] = mk.sks;
     data['statusMk'] = mk.statusMk;
+    data['hariMk'] = mk.hari;
     console.log(data['idMk']);
     deleteMk(data);
 }

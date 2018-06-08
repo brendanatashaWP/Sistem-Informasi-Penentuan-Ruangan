@@ -20,4 +20,8 @@ public class MkService {
     public List<Matakuliah> findMkByIdKaprodi(int idKaprodi) {
         return mkInter.findMatakuliahsByIdKaprodi(idKaprodi);
     }
+
+//    public List<Matakuliah> findMkByProdi(String prodi){
+//        return mkInter.
+//    }
 }

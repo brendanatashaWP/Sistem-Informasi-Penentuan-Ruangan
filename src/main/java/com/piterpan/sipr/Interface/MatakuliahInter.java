@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface MatakuliahInter extends JpaRepository<Matakuliah, Integer> {
     public List<Matakuliah> findMatakuliahsByIdKaprodi(int idKaprodi);
+//    public List<Matakuliah> findMatakuliahsBy
 }

@@ -10,5 +10,4 @@ import java.util.List;
 public interface UserInter extends JpaRepository<User, Integer> {
     public List<User> findUsersByRoleIsLike(String role);
     public User findUsersByUsername(String username);
-
 }

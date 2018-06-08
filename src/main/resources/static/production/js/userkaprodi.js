@@ -4,6 +4,7 @@ $(document).ready(function(){
     $("#coba").click(function(){
         submitFormAdd();
     });
+    //user klik btn logout
     $("#btnLogout").click(function(){
         logout();
     });

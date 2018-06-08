@@ -103,6 +103,8 @@ public class Matakuliah implements Serializable{
     private double jamMulai;
     @Column(nullable = false)
     private String statusMk;
+    @Column(nullable = false)
+    private String hariMk;
 
     public int getIdKaprodi() {
         return idKaprodi;
@@ -118,5 +120,13 @@ public class Matakuliah implements Serializable{
 
     public void setJamMulai(double jamMulai) {
         this.jamMulai = jamMulai;
+    }
+
+    public String getHariMk() {
+        return hariMk;
+    }
+
+    public void setHariMk(String hariMk) {
+        this.hariMk = hariMk;
     }
 }
