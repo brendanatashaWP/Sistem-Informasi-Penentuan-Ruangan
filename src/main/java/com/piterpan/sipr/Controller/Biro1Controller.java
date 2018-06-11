@@ -45,7 +45,9 @@ public class Biro1Controller {
             return "redirect:/";
         else {
             modelMap.addAttribute("userList", userRestCont.getAllUserKaprodi());
+//            modelMap.addAttribute("ruang", ruangRestCont.getKapasitas(ruang.getNamaRuang()));
             modelMap.addAttribute("ruangList", ruangRestCont.getActiveRuang());
+//            modelMap.addAttribute("ruang", ruangRestCont.getKapasitas());
             modelMap.addAttribute("idUser", user.getIdUser());
             modelMap.addAttribute("username", user.getUsername());
             modelMap.addAttribute("namaUser", user.getNamaUser());

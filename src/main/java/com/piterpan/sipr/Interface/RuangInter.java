@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface RuangInter extends JpaRepository<Ruang, Integer>{
     public List<Ruang> findRuangsByStatusRuangIsAndKapasitasRuangIsGreaterThanEqual(String status, int kap);
-//    public List<Ruang> getRuangsByStatusRuangEquals(String stat);
     public List<Ruang> findRuangsByStatusRuangIsLike(String stat);
+    public Ruang findRuangByNamaRuang(String namaRuang);
+
 }

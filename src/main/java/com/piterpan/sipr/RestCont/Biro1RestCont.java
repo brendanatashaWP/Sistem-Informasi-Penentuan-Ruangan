@@ -30,4 +30,6 @@ public class Biro1RestCont {
     public List<Ruang> getAllMk(){
         return biro1Service.getRuangByStatus("Active");
     }
+
+
 }

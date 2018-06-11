@@ -17,10 +17,60 @@ import static java.lang.Float.parseFloat;
 public class MatakuliahRestCont {
     @Autowired
     MatakuliahInter matakuliahInter;
+    int a = 0;
 
     //Post matakuliah
     @PostMapping("/post-mk")
     public Matakuliah addMk(@Valid @RequestBody Matakuliah mk){
+//        int[] b = new int[mk.getSks()];
+//        if (mk.getJamMulai().equals("7,30") || mk.getJamMulai().equals("07,30")){
+//            this.a = 0;
+//        }
+//        if (mk.getJamMulai().equals("8,30") || mk.getJamMulai().equals("08,30")){
+//            this.a = 1;
+//        }
+//        if (mk.getJamMulai().equals("9,30") || mk.getJamMulai().equals("09,30")){
+//            this.a = 2;
+//        }
+//        if (mk.getJamMulai().equals("10,30")){
+//            this.a = 3;
+//        }
+//        if (mk.getJamMulai().equals("11,30")){
+//            this.a= 4;
+//        }
+//        if (mk.getJamMulai().equals("12,30")){
+//            this.a= 5;
+//        }
+//        if (mk.getJamMulai().equals("13,30")){
+//            this.a= 6;
+//        }
+//        if (mk.getJamMulai().equals("14,30")){
+//            this.a= 7;
+//        }
+//        if (mk.getJamMulai().equals("15,30")){
+//            this.a= 8;
+//        }
+//        if (mk.getJamMulai().equals("16,30")){
+//            this.a= 9;
+//        }
+//        if (mk.getJamMulai().equals("17,30")){
+//            this.a = 10;
+//        }
+//        System.out.println(this.a);
+//
+//        for (int x = 0; x < mk.getSks() ; x++) {
+//           if (x == 0){
+//               b[x] = this.a;
+//               this.a++;
+//           }
+//           else {
+//               b[x] = this.a;
+//               this.a++;
+//           }
+//           System.out.println(b);
+//        }
+//        this.a=0;
+//        mk.setIdxJamTerpakai(b);
         return matakuliahInter.save(mk);
     }
 

@@ -105,6 +105,8 @@ public class Matakuliah implements Serializable{
     private String statusMk;
     @Column(nullable = false)
     private String hariMk;
+//    @Column(nullable = false)
+//    private int[] idxJamTerpakai;
 
     public int getIdKaprodi() {
         return idKaprodi;
@@ -129,4 +131,12 @@ public class Matakuliah implements Serializable{
     public void setHariMk(String hariMk) {
         this.hariMk = hariMk;
     }
+
+//    public int[] getIdxJamTerpakai() {
+//        return idxJamTerpakai;
+//    }
+//
+//    public void setIdxJamTerpakai(int[] idxJamTerpakai) {
+//        this.idxJamTerpakai = idxJamTerpakai;
+//    }
 }

@@ -99,7 +99,7 @@ function addMk(data) {
 //submit form add persiapan lempar data2
 function submitFormAdd() {
     event.preventDefault();
-    var idKaprodi = $('#idUser'); //baru samPE SINIIII
+    var idKaprodi = $('#idUser');
     // var idMk = $('#namaPengguna');
     var jamSelesai = $('#jamSelesai');
     var jamMulai = $('#jamMulai');
@@ -121,6 +121,7 @@ function submitFormAdd() {
     data['sks'] = sks.val();
     data['hariMk'] = hari.val();
     data['statusMk'] = 'Active';
+    data['idxJamTerpakai'] = '';
     idKaprodi.val('');
     jamMulai.val('');
     jamSelesai.val('');
@@ -152,9 +153,6 @@ function hitungJamSelesai(jamMulai, sks) {
         var nol = 0;
         finalMenit += nol.toString();
     }
-    // console.log("totalMenit " + totalMenit);
-    // console.log("jam selesai: " + finalJam + "." + finalMenit);
-    // return finalJam + "," + finalMenit;
     document.getElementById("jamSelesai").value = finalJam + "." + finalMenit;
     document.getElementById("jamSelesaiEdit").value = finalJam + "." + finalMenit;
 }

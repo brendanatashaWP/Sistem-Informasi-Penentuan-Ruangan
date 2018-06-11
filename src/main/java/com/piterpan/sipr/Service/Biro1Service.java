@@ -19,4 +19,9 @@ public class Biro1Service {
     public List<Ruang> getRuangByStatus(String stat){
         return ruangInter.findRuangsByStatusRuangIsLike(stat);
     }
+
+//    public Ruang findRuangByNama(String nama) {
+//        return ruangInter.findRuangByNamaRuang(nama);
+//    }
+
 }
